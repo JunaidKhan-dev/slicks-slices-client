@@ -123,6 +123,17 @@ const turnSlicemastersIntoPages = async ({ graphql, actions }) => {
       },
     });
   });
+
+  // create each page for Slicemaster
+  data.persons.nodes.forEach((person) => {
+    actions.createPage({
+      path: `/slicemaster/${person.slug.current.toLowerCase()}`,
+      component: path.resolve('./src/templates/slicemaster.js'),
+      context: {
+        slug: person.slug.current,
+      },
+    });
+  });
 };
 // turn Beers into pages
 const turnBeersIntoPages = async ({ graphql, actions }) => {

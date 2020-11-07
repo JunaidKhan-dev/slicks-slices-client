@@ -30,7 +30,8 @@ export const query = graphql`
 const SlicemasterGrid = styled.div`
   display: grid;
   grid-gap: 2rem;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(2, minmax(250px, 1fr));
+  text-align: center;
 `;
 
 const Slicemasterstyle = styled.div`

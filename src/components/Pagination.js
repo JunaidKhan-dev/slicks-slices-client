@@ -30,14 +30,14 @@ const Pagination = ({ currentPage, pageSize, totalCount, skip, base }) => {
   const totalPage = Math.ceil(totalCount / pageSize);
   const prevPage = currentPage - 1;
   const nextPage = currentPage + 1;
-  const hasNextPage = nextPage <= totalPage;
+  const hasNextPage = nextPage <= totalPage - 1;
   const hasPrevPage = prevPage >= 1;
   return (
     <Paginationstyles>
       <Link disabled={!hasPrevPage} to={`/${base}/${prevPage}`}>
         ◀️ prev
       </Link>
-      {Array.from({ length: totalPage }).map((_, i) => (
+      {Array.from({ length: totalPage - 1 }).map((_, i) => (
         <Link
           className={currentPage === 1 && i === 0 ? 'current' : ''}
           to={`/${base}/${i > 0 ? i + 1 : ''}`}
