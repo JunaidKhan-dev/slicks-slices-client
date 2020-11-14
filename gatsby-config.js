@@ -8,9 +8,11 @@ module.exports = {
     title: `slicks slices`,
     siteUrl: 'https://gatsby.pizza',
     description: 'The best Pizza place in Town',
+    twitter: '@slickSlices',
   },
   plugins: [
     `gatsby-plugin-styled-components`,
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-sanity`,
       options: {

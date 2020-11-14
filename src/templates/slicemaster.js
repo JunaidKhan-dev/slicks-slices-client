@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import Image from 'gatsby-image';
+import SEO from '../components/SEO';
 
 export const { data } = graphql`
   query($slug: String!) {
@@ -37,16 +38,19 @@ const DivWrapper = styled.div`
   }
 `;
 const Slicemaster = ({ data: { person } }) => (
-  <DivWrapper>
-    <h1 className="mark">{person.name} - SliceMaster</h1>
+  <>
+    <SEO title={person.name} image={person.image.asset.fluid.src} />
+    <DivWrapper>
+      <h1 className="mark">{person.name} - SliceMaster</h1>
 
-    <Image
-      fluid={person.image.asset.fluid}
-      style={{ width: '40%', margin: '0 auto' }}
-      alt={person.name}
-    />
-    <p>{person.description}</p>
-  </DivWrapper>
+      <Image
+        fluid={person.image.asset.fluid}
+        style={{ width: '40%', margin: '0 auto' }}
+        alt={person.name}
+      />
+      <p>{person.description}</p>
+    </DivWrapper>
+  </>
 );
 
 export default Slicemaster;

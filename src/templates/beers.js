@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import styled from 'styled-components';
+import SEO from '../components/SEO';
 
 export const query = graphql`
   query($limit: Int!, $skip: Int) {
@@ -70,6 +71,7 @@ const baseUrl = '/beers/';
 
 const BeersPage = ({ data: { beers }, pageContext, location }) => (
   <>
+    <SEO title={`Beers Page-${pageContext.currentPage}`} />
     <h2 className="center">
       we have {beers.totalCount} beers Available. Dine in Only!
     </h2>
@@ -79,6 +81,7 @@ const BeersPage = ({ data: { beers }, pageContext, location }) => (
         return (
           <SingleBeerStyle key={beer.id}>
             {beer.image && <img src={beer.image} alt={beer.name} />}
+
             <h3>{beer.name}</h3>
             <h5>{beer.price}</h5>
             <p title={`${rating} out of 5 stars`}>
