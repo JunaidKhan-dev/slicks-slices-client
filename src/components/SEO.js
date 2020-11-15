@@ -2,7 +2,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-export const query = graphql`
+const query = graphql`
   {
     site {
       siteMetadata {
@@ -15,7 +15,6 @@ export const query = graphql`
 `;
 const SEO = ({ children, location, description, title, image }) => {
   const { site } = useStaticQuery(query);
-  console.log('test', site.siteMetadata.title);
   return (
     <Helmet titleTemplate={`%s - ${site.siteMetadata.title}`}>
       <html lang="en" />
