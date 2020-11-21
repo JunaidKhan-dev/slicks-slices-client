@@ -37,17 +37,28 @@ const OrderPage = ({ data: { pizzas } }) => {
   const { values, updateValue } = useForm({
     name: '',
     email: '',
+    maplesyrup: '',
   });
 
-  const { order, addToOrder, removeFromOrder } = usePizza({
+  const {
+    order,
+    addToOrder,
+    removeFromOrder,
+    error,
+    loading,
+    message,
+    submitOrder,
+  } = usePizza({
     pizzas: pizzas.nodes,
-    inputs: values,
+    values,
   });
-
+  if (message) {
+    return <p>{message}</p>;
+  }
   return (
     <>
       <SEO title="order pizza" />
-      <OrderStyles>
+      <OrderStyles onSubmit={submitOrder}>
         <fieldset>
           <legend>Your Info</legend>
           <label htmlFor="name">Name</label>
@@ -65,6 +76,15 @@ const OrderPage = ({ data: { pizzas } }) => {
             id="email"
             value={values.email}
             onChange={updateValue}
+          />
+          {/* honey pot to avoid bots */}
+          <input
+            type="maplesyrup"
+            name="maplesyrup"
+            id="maplesyrup"
+            value={values.maplesyrup}
+            onChange={updateValue}
+            className="maplesyrup"
           />
         </fieldset>
 
@@ -110,7 +130,11 @@ const OrderPage = ({ data: { pizzas } }) => {
             Your Total is{' '}
             {formatMoney(calculateOrderTotal(order, pizzas.nodes))}
           </h3>
-          <button type="submit">Order Ahead</button>
+          <div>{error && <p>Error: {error}</p>}</div>
+
+          <button type="submit" disabled={loading}>
+            {loading ? 'placing order' : 'Order Ahead'}
+          </button>
         </fieldset>
       </OrderStyles>
     </>

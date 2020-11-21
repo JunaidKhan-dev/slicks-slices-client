@@ -33,7 +33,7 @@ const Pagination = ({ currentPage, pageSize, totalCount, skip, base }) => {
   const hasNextPage = nextPage <= totalPage - 1;
   const hasPrevPage = prevPage >= 1;
   return (
-    <Paginationstyles>
+    <Paginationstyles key={currentPage + Math.random()}>
       <Link disabled={!hasPrevPage} to={`/${base}/${prevPage}`}>
         ◀️ prev
       </Link>
@@ -41,6 +41,7 @@ const Pagination = ({ currentPage, pageSize, totalCount, skip, base }) => {
         <Link
           className={currentPage === 1 && i === 0 ? 'current' : ''}
           to={`/${base}/${i > 0 ? i + 1 : ''}`}
+          key={i}
         >
           {i + 1}
         </Link>

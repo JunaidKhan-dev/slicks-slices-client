@@ -72,8 +72,8 @@ const SlicemastersPage = ({ data: { slicemasters }, pageContext }) => {
         base="slicemasters"
       />
       <SlicemasterGrid>
-        {sliceMasters.map((slicemaster) => (
-          <>
+        {sliceMasters.map((slicemaster, i) => (
+          <React.Fragment key={`${sliceMasters.id}-${i}`}>
             {slicemaster.image.asset && (
               <Slicemasterstyle key={slicemaster.id}>
                 <Link to={`/slicemaster/${slicemaster.slug.current}`}>
@@ -87,7 +87,7 @@ const SlicemastersPage = ({ data: { slicemasters }, pageContext }) => {
                 <p className="description">{slicemaster.description}</p>
               </Slicemasterstyle>
             )}
-          </>
+          </React.Fragment>
         ))}
       </SlicemasterGrid>
     </>
